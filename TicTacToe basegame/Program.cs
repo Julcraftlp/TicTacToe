@@ -328,6 +328,8 @@ class TicTacToe
             return 2;
         if (field[2] == field[4] && field[4] == field[6] && field[6] == 2)
             return 2;
+        if (field[0] != 0 && field[1] != 0 && field[2] != 0 && field[3] != 0 && field[4] != 0 && field[5] != 0 && field[6] != 0 && field[7] != 0 && field[8] != 0)
+            return 3;
         return 0;
 
     }
@@ -359,6 +361,8 @@ public class Program
                     goto winx;
                 case 2:
                     goto wino;
+                case 3:
+                    goto patt;
                 default:
                     break;
             }
@@ -378,6 +382,8 @@ public class Program
                     goto winx;
                 case 2:
                     goto wino;
+                case 3:
+                    goto patt;
                 default:
                     break;
             }
@@ -389,8 +395,13 @@ public class Program
     wino:
         Console.Clear();
         Console.WriteLine("Win für o");
+        goto end;
+    patt:
+        Console.Clear();
+        Console.WriteLine("Patt");
+        goto end;
     end:
-        Console.WriteLine("V1.0.0");
+        Console.WriteLine("Game Version:1.1.0");
     }
 }
 
