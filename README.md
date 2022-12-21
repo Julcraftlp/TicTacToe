@@ -17,6 +17,9 @@ Hierf&uuml;r wird das numpad volgenden layouts genutzt:<br />
 123</p>
 
 <p>Update Log:<br />
+V1.1.0<br />
+patt detection hinzugefügt</p>
+
 V1.0.0<br />
 Spiel mit den grumdlegenden funktionen wurde programmiert<br />
 -Win Detection<br />
