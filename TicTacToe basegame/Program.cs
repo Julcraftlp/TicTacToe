@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-//Line 240 weitercoden
+//Line 244 weitercoden
 //überprüfung wíns
 //Win Screen Einfügen
 //Start Screen Einfügen
@@ -239,24 +239,49 @@ class TicTacToe
             }
         }
     }
-    public void proof()
+    public short proof()
     {
         if (field[0] == field[1] && field[1] == field[2] && field[2] == 1)
-            if (field[0] == field[1] && field[1] == field[2] && field[2] == 1)
-                if (field[0] == field[1] && field[1] == field[2] && field[2] == 1)
-                    if (field[0] == field[1] && field[1] == field[2] && field[2] == 1)
-                        if (field[0] == field[1] && field[1] == field[2] && field[2] == 1)
-                            if (field[0] == field[1] && field[1] == field[2] && field[2] == 1)
-                                if (field[0] == field[1] && field[1] == field[2] && field[2] == 1)
-                                    if (field[0] == field[1] && field[1] == field[2] && field[2] == 1)
+            return 1;
+        if (field[3] == field[4] && field[4] == field[5] && field[5] == 1)
+            return 1;
+        if (field[6] == field[7] && field[7] == field[8] && field[8] == 1)
+            return 1;
+        if (field[0] == field[3] && field[3] == field[6] && field[6] == 1)
+            return 1;
+        if (field[1] == field[4] && field[4] == field[7] && field[7] == 1)
+            return 1;
+        if (field[2] == field[5] && field[5] == field[8] && field[8] == 1)
+            return 1;
+        if (field[0] == field[4] && field[4] == field[8] && field[8] == 1)
+            return 1;
+        if (field[2] == field[4] && field[4] == field[6] && field[6] == 1)
+            return 1;
+        if (field[0] == field[1] && field[1] == field[2] && field[2] == 2)
+            return 2;
+        if (field[3] == field[4] && field[4] == field[5] && field[5] == 2)
+            return 2;
+        if (field[6] == field[7] && field[7] == field[8] && field[8] == 2)
+            return 2;
+        if (field[0] == field[3] && field[3] == field[6] && field[6] == 2)
+            return 2;
+        if (field[1] == field[4] && field[4] == field[7] && field[7] == 2)
+            return 2;
+        if (field[2] == field[5] && field[5] == field[8] && field[8] == 2)
+            return 2;
+        if (field[0] == field[4] && field[4] == field[8] && field[8] == 2)
+            return 2;
+        if (field[2] == field[4] && field[4] == field[6] && field[6] == 2)
+            return 2;
+        return 0;
 
     }
 }
 
-class Program
+public class Program
 {
 
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         TicTacToe game = new TicTacToe();
         game.setup();
@@ -265,8 +290,33 @@ class Program
         {
             game.turnx();
             game.draw();
-            game.proof();
-        }
+            switch (game.proof())
+            {
+                case 1:
+                    goto winx;
+                case 2:
+                    goto wino;
+                default:
+                    break;
+            }
+            game.turno();
+            game.draw();
+            switch (game.proof())
+            {
+                case 1:
+                    goto winx;
+                case 2:
+                    goto wino;
+                default:
+                    break;
+            }
+        }//Running Game Loop
+    winx:
+        Console.Clear();
+        Console.WriteLine("Win für x");
+    wino:
+        Console.Clear();
+        Console.WriteLine("Win für o");
     }
 }
 
