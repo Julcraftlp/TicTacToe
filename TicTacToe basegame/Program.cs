@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Threading;
 //Line 244 weitercoden
 //überprüfung wíns
 //Win Screen Einfügen
@@ -11,8 +12,9 @@ class TicTacToe
     public short[] field = new short[9];
     public void setup()
     {
-        Console.InputEncoding = Encoding.UTF8;
+        Console.OutputEncoding = Encoding.UTF8;
         Console.CursorVisible = false;
+        Console.Clear();
         Console.WriteLine("╔═╦═╦═╗\n║ ║ ║ ║\n╠═╬═╬═╣\n║ ║ ║ ║\n╠═╬═╬═╣\n║ ║ ║ ║\n╚═╩═╩═╝");
 
     }
@@ -23,10 +25,10 @@ class TicTacToe
             case 0:
                 break;
             case 1:
-                Console.Write("╳");
+                Console.ForegroundColor = ConsoleColor.Red;Console.Write("╳");
                 break;
             case 2:
-                Console.Write("◯");
+                Console.ForegroundColor = ConsoleColor.Blue;Console.Write("O");
                 break;
         }
         Console.SetCursorPosition(3, 1);
@@ -35,10 +37,10 @@ class TicTacToe
             case 0:
                 break;
             case 1:
-                Console.Write("╳");
+                Console.ForegroundColor = ConsoleColor.Red;Console.Write("╳");
                 break;
             case 2:
-                Console.Write("◯");
+                Console.ForegroundColor = ConsoleColor.Blue;Console.Write("O");
                 break;
         }
         Console.SetCursorPosition(5, 1);
@@ -47,10 +49,10 @@ class TicTacToe
             case 0:
                 break;
             case 1:
-                Console.Write("╳");
+                Console.ForegroundColor = ConsoleColor.Red;Console.Write("╳");
                 break;
             case 2:
-                Console.Write("◯");
+                Console.ForegroundColor = ConsoleColor.Blue;Console.Write("O");
                 break;
         }
         Console.SetCursorPosition(1, 3);
@@ -59,10 +61,10 @@ class TicTacToe
             case 0:
                 break;
             case 1:
-                Console.Write("╳");
+                Console.ForegroundColor = ConsoleColor.Red;Console.Write("╳");
                 break;
             case 2:
-                Console.Write("◯");
+                Console.ForegroundColor = ConsoleColor.Blue;Console.Write("O");
                 break;
         }
         Console.SetCursorPosition(3, 3);
@@ -71,10 +73,10 @@ class TicTacToe
             case 0:
                 break;
             case 1:
-                Console.Write("╳");
+                Console.ForegroundColor = ConsoleColor.Red;Console.Write("╳");
                 break;
             case 2:
-                Console.Write("◯");
+                Console.ForegroundColor = ConsoleColor.Blue;Console.Write("O");
                 break;
         }
         Console.SetCursorPosition(5, 3);
@@ -83,10 +85,10 @@ class TicTacToe
             case 0:
                 break;
             case 1:
-                Console.Write("╳");
+                Console.ForegroundColor = ConsoleColor.Red;Console.Write("╳");
                 break;
             case 2:
-                Console.Write("◯");
+                Console.ForegroundColor = ConsoleColor.Blue;Console.Write("O");
                 break;
         }
         Console.SetCursorPosition(1, 5);
@@ -95,10 +97,10 @@ class TicTacToe
             case 0:
                 break;
             case 1:
-                Console.Write("╳");
+                Console.ForegroundColor = ConsoleColor.Red;Console.Write("╳");
                 break;
             case 2:
-                Console.Write("◯");
+                Console.ForegroundColor = ConsoleColor.Blue;Console.Write("O");
                 break;
         }
         Console.SetCursorPosition(3, 5);
@@ -107,10 +109,10 @@ class TicTacToe
             case 0:
                 break;
             case 1:
-                Console.Write("╳");
+                Console.ForegroundColor = ConsoleColor.Red;Console.Write("╳");
                 break;
             case 2:
-                Console.Write("◯");
+                Console.ForegroundColor = ConsoleColor.Blue;Console.Write("O");
                 break;
         }
         Console.SetCursorPosition(5, 5);
@@ -119,125 +121,178 @@ class TicTacToe
             case 0:
                 break;
             case 1:
-                Console.Write("╳");
+                Console.ForegroundColor = ConsoleColor.Red;Console.Write("╳");
                 break;
             case 2:
-                Console.Write("◯");
+                Console.ForegroundColor = ConsoleColor.Blue;Console.Write("O");
                 break;
         }
+        Console.ResetColor();
 
     }
-    public void turnx()
+    public bool turnx()
     {
-        bool pass = true;
-        while (pass)
+        switch (Console.ReadKey(true).Key)
         {
-            switch (Console.ReadKey(true).Key)
-            {
-                case ConsoleKey.NumPad7:
-                    if (field[0] == 0)
-                        field[0] = 1;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad8:
-                    if (field[1] == 0)
-                        field[1] = 1;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad9:
+            case ConsoleKey.NumPad7:
+                if (field[0] == 0)
+                {
+                    field[0] = 1;
+                    return true;
+                }
+                else
+                    return false;
+            case ConsoleKey.NumPad8:
+                if (field[1] == 0)
+                {
+                    field[1] = 1;
+                    return true;
+                }
+                else
+                    return false;
 
-                    if (field[2] == 0)
-                        field[2] = 1;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad4:
-                    if (field[3] == 0)
-                        field[3] = 1;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad5:
-                    if (field[4] == 0)
-                        field[4] = 1;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad6:
-                    if (field[5] == 0)
-                        field[5] = 1;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad1:
-                    if (field[6] == 0)
-                        field[6] = 1;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad2:
-                    if (field[7] == 0)
-                        field[7] = 1;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad3:
-                    if (field[8] == 0)
-                        field[8] = 1;
-                    pass = false;
-                    break;
-            }
+            case ConsoleKey.NumPad9:
+
+                if (field[2] == 0)
+                {
+                    field[2] = 1;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad4:
+                if (field[3] == 0)
+                {
+                    field[3] = 1;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad5:
+                if (field[4] == 0)
+                {
+                    field[4] = 1;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad6:
+                if (field[5] == 0)
+                {
+                    field[5] = 1;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad1:
+                if (field[6] == 0)
+                {
+                    field[6] = 1;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad2:
+                if (field[7] == 0)
+                {
+                    field[7] = 1;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad3:
+                if (field[8] == 0)
+                {
+                    field[8] = 1;
+                    return true;
+                }else
+                    return false;
+
+            default:
+                return false;
         }
     }
-    public void turno()
+    public bool turno()
     {
-        bool pass = true;
-        while (pass)
+        switch (Console.ReadKey(true).Key)
         {
-            switch (Console.ReadKey(true).Key)
-            {
-                case ConsoleKey.NumPad7:
-                    if (field[0] == 0)
-                        field[0] = 2;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad8:
-                    if (field[1] == 0)
-                        field[1] = 2;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad9:
+            case ConsoleKey.NumPad7:
+                if (field[0] == 0)
+                {
+                    field[0] = 2;
+                    return true;
+                }else
+                    return false;
 
-                    if (field[2] == 0)
-                        field[2] = 2;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad4:
-                    if (field[3] == 0)
-                        field[3] = 2;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad5:
-                    if (field[4] == 0)
-                        field[4] = 2;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad6:
-                    if (field[5] == 0)
-                        field[5] = 2;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad1:
-                    if (field[6] == 0)
-                        field[6] = 2;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad2:
-                    if (field[7] == 0)
-                        field[7] = 2;
-                    pass = false;
-                    break;
-                case ConsoleKey.NumPad3:
-                    if (field[8] == 0)
-                        field[8] = 2;
-                    pass = false;
-                    break;
-            }
+            case ConsoleKey.NumPad8:
+                if (field[1] == 0)
+                {
+                    field[1] = 2;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad9:
+
+                if (field[2] == 0)
+                {
+                    field[2] = 2;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad4:
+                if (field[3] == 0)
+                {
+                    field[3] = 2;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad5:
+                if (field[4] == 0)
+                {
+                    field[4] = 2;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad6:
+                if (field[5] == 0)
+                {
+                    field[5] = 2;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad1:
+                if (field[6] == 0)
+                {
+                    field[6] = 2;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad2:
+                if (field[7] == 0)
+                {
+                    field[7] = 2;
+                    return true;
+                }else
+                    return false;
+
+            case ConsoleKey.NumPad3:
+                if (field[8] == 0)
+                {
+                    field[8] = 2;
+                    return true;
+                }else
+                    return false;
+
+            default:
+                return false;
         }
+
     }
     public short proof()
     {
@@ -288,7 +343,15 @@ public class Program
         game.draw();
         while (true)
         {
-            game.turnx();
+            while (game.turnx() == false)
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                game.setup();
+                Thread.Sleep(500);
+                Console.ResetColor();
+                game.setup();
+                game.draw();
+            }
             game.draw();
             switch (game.proof())
             {
@@ -299,7 +362,15 @@ public class Program
                 default:
                     break;
             }
-            game.turno();
+            while (game.turno() == false)
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                game.setup();
+                Thread.Sleep(500);
+                Console.ResetColor();
+                game.setup();
+                game.draw();
+            }
             game.draw();
             switch (game.proof())
             {
@@ -310,13 +381,16 @@ public class Program
                 default:
                     break;
             }
-        }//Running Game Loop
+        }
     winx:
         Console.Clear();
         Console.WriteLine("Win für x");
+        goto end;
     wino:
         Console.Clear();
         Console.WriteLine("Win für o");
+    end:
+        Console.WriteLine("V1.0.0");
     }
 }
 
