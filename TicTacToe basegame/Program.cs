@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Text;
 using System.Threading;
-//Line 244 weitercoden
-//überprüfung wíns
-//Win Screen Einfügen
-//Start Screen Einfügen
 
 class TicTacToe
 {
@@ -295,7 +291,7 @@ class TicTacToe
     public short mainmenu()
     {
         Console.Clear();
-        Console.WriteLine("TicTacToe V1.2.0");
+        Console.WriteLine("TicTacToe V1.2.1");
         Console.WriteLine("╔══════════╗\n║          ║\n║          ║\n╚══════════╝");
         short sel = 1;
         goto draw;
@@ -319,6 +315,7 @@ class TicTacToe
             Console.ForegroundColor = ConsoleColor.Yellow;
         Console.Write("Exit  Game");
         Console.ResetColor();
+        prof:
         switch (Console.ReadKey(true).Key)
         {
             case ConsoleKey.Enter:
@@ -328,7 +325,7 @@ class TicTacToe
             case ConsoleKey.DownArrow:
                 goto down;
             default:
-                return 0;
+                goto prof;
         }
     }
     public short proof()
@@ -377,11 +374,13 @@ public class Program
 
     public static void Main(string[] args)
     {
-
+        
         Console.OutputEncoding = Encoding.UTF8;
         Console.CursorVisible = false;
         TicTacToe game = new TicTacToe();
-        start:
+    start:
+        for (int i = 0; i < 9; i++)
+            game.field[i] = 0;
         switch (game.mainmenu())
         {
             case 1:
@@ -445,7 +444,7 @@ public class Program
                 Console.WriteLine("Patt");
                 goto end;
             end:
-                Console.WriteLine("Game Version:1.2.0");
+                Console.WriteLine("Game Version:1.2.1");
                 Console.WriteLine("Drücke etwas um zum hauptmenü zurückzukehren");
                 Console.ReadKey(true);
                 goto start;
