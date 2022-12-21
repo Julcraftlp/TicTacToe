@@ -12,8 +12,6 @@ class TicTacToe
     public short[] field = new short[9];
     public void setup()
     {
-        Console.OutputEncoding = Encoding.UTF8;
-        Console.CursorVisible = false;
         Console.Clear();
         Console.WriteLine("╔═╦═╦═╗\n║ ║ ║ ║\n╠═╬═╬═╣\n║ ║ ║ ║\n╠═╬═╬═╣\n║ ║ ║ ║\n╚═╩═╩═╝");
 
@@ -294,6 +292,45 @@ class TicTacToe
         }
 
     }
+    public short mainmenu()
+    {
+        Console.Clear();
+        Console.WriteLine("TicTacToe V1.2.0");
+        Console.WriteLine("╔══════════╗\n║          ║\n║          ║\n╚══════════╝");
+        short sel = 1;
+        goto draw;
+    down:
+        ++sel;
+        if (sel > 2)
+            sel = 1;
+        goto draw;
+    up:
+        --sel;
+        if (sel < 1)
+            sel = 2;
+    draw:
+        Console.SetCursorPosition(1, 2);
+        if (sel == 1)
+            Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Write("Start Game");
+        Console.ResetColor();
+        Console.SetCursorPosition(1, 3);
+        if (sel == 2)
+            Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Write("Exit  Game");
+        Console.ResetColor();
+        switch (Console.ReadKey(true).Key)
+        {
+            case ConsoleKey.Enter:
+                return sel;
+            case ConsoleKey.UpArrow:
+                goto up;
+            case ConsoleKey.DownArrow:
+                goto down;
+            default:
+                return 0;
+        }
+    }
     public short proof()
     {
         if (field[0] == field[1] && field[1] == field[2] && field[2] == 1)
@@ -340,68 +377,79 @@ public class Program
 
     public static void Main(string[] args)
     {
+
+        Console.OutputEncoding = Encoding.UTF8;
+        Console.CursorVisible = false;
         TicTacToe game = new TicTacToe();
-        game.setup();
-        game.draw();
-        while (true)
+        start:
+        switch (game.mainmenu())
         {
-            while (game.turnx() == false)
-            {
-                Console.BackgroundColor = ConsoleColor.Red;
-                game.setup();
-                Thread.Sleep(500);
-                Console.ResetColor();
-                game.setup();
-                game.draw();
-            }
+            case 1:
+            game.setup();
             game.draw();
-            switch (game.proof())
+            while (true)
             {
-                case 1:
-                    goto winx;
-                case 2:
-                    goto wino;
-                case 3:
-                    goto patt;
-                default:
-                    break;
-            }
-            while (game.turno() == false)
-            {
-                Console.BackgroundColor = ConsoleColor.Red;
-                game.setup();
-                Thread.Sleep(500);
-                Console.ResetColor();
-                game.setup();
+                while (game.turnx() == false)
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    game.setup();
+                    Thread.Sleep(500);
+                    Console.ResetColor();
+                    game.setup();
+                    game.draw();
+                }
                 game.draw();
-            }
-            game.draw();
-            switch (game.proof())
-            {
-                case 1:
-                    goto winx;
-                case 2:
-                    goto wino;
-                case 3:
-                    goto patt;
-                default:
-                    break;
-            }
-        }
-    winx:
-        Console.Clear();
-        Console.WriteLine("Win für x");
-        goto end;
-    wino:
-        Console.Clear();
-        Console.WriteLine("Win für o");
-        goto end;
-    patt:
-        Console.Clear();
-        Console.WriteLine("Patt");
-        goto end;
-    end:
-        Console.WriteLine("Game Version:1.1.0");
+                switch (game.proof())
+                {
+                    case 1:
+                        goto winx;
+                    case 2:
+                        goto wino;
+                    case 3:
+                        goto patt;
+                    default:
+                        break;
+                }
+                while (game.turno() == false)
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    game.setup();
+                    Thread.Sleep(500);
+                    Console.ResetColor();
+                    game.setup();
+                    game.draw();
+                }
+                game.draw();
+                switch (game.proof())
+                {
+                    case 1:
+                        goto winx;
+                    case 2:
+                        goto wino;
+                    case 3:
+                        goto patt;
+                    default:
+                        break;
+                }
+            }//Game Loop
+            winx:
+                Console.Clear();
+                Console.WriteLine("Win für x");
+                goto end;
+            wino:
+                Console.Clear();
+                Console.WriteLine("Win für o");
+                goto end;
+            patt:
+                Console.Clear();
+                Console.WriteLine("Patt");
+                goto end;
+            end:
+                Console.WriteLine("Game Version:1.2.0");
+                Console.WriteLine("Drücke etwas um zum hauptmenü zurückzukehren");
+                Console.ReadKey(true);
+                goto start;
+        }//Game Mainscript
     }
 }
 
